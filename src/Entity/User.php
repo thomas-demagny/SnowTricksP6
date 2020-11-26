@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use DateTime;
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -59,14 +58,6 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private bool $isVerified = false;
-
-    /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->setCreatedAt(new DateTime());
-    }
 
     /**
      * @return int|null
@@ -195,13 +186,20 @@ class User implements UserInterface
     }
 
     /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->setCreatedAt(new DateTime());
+    }
+
+    /**
      * @return DateTime
      */
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
-
 
     /**
      * @param DateTime $createdAt
