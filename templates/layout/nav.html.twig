@@ -25,15 +25,15 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Mon Profil</a>
-                        <a class="dropdown-item" href="{# {{ path('app_logout') }} #}" onclick="confirm('Are you sure to want to logout ?')">Logout</a>
+                        <a class="dropdown-item" href="{{ path('app_logout') }}" onclick="alert('Are you sure to want to logout ?')">Logout</a>
                     </div>
                 </li>
                 {% else %}
-                    <a class="nav-link" href="{# {{ path('app_login') }} #}">
+                    <a class="nav-link" href="{{ path('app_login') }}">
                         Sign in
                     </a>
                     <li class="nav-item">
-                    <a class="nav-link" href="{# {{ path('app_register') }} #}">
+                    <a class="nav-link" href="{{ path('app_register') }}">
                         Sign up
                     </a>
                 </li>
