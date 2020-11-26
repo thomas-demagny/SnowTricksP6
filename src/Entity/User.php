@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -21,7 +22,7 @@ class User implements UserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -52,13 +53,16 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $createdAt;
+    private ?DateTime $createdAt;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private bool $isVerified = false;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +78,10 @@ class User implements UserInterface
         return (string) $this->username;
     }
 
+    /**
+     * @param string $username
+     * @return $this
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -93,6 +101,10 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -108,6 +120,10 @@ class User implements UserInterface
         return (string) $this->password;
     }
 
+    /**
+     * @param string $password
+     * @return $this
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -132,11 +148,18 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -144,11 +167,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
+    /**
+     * @param string|null $avatar
+     * @return $this
+     */
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
@@ -156,23 +186,38 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeInterface
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeInterface $createdAt): self
+
+    /**
+     * @param DateTime $createdAt
+     * @return $this
+     */
+    public function setCreatedAt(DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
 
+    /**
+     * @param bool $isVerified
+     * @return $this
+     */
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
