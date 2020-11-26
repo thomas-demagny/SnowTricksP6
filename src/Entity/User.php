@@ -61,6 +61,14 @@ class User implements UserInterface
     private bool $isVerified = false;
 
     /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->setCreatedAt(new DateTime());
+    }
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
