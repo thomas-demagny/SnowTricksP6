@@ -9,9 +9,11 @@
         <thead>
         <tr>
             <th>Identifiant</th>
+            <th>Avatar</th>
             <th>Pseudo</th>
             <th>Email</th>
             <th>Rôles</th>
+
             <th>Date de création</th>
             <th>Actions</th>
         </tr>
@@ -20,10 +22,11 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
+                <td>{{ user.avatar }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('d-m-Y') : '' }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
