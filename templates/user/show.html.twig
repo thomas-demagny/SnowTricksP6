@@ -3,6 +3,7 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
+
     <h1>User</h1>
 
     <table class="table">
@@ -10,6 +11,10 @@
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Avatar</th>
+                <td>{{ user.avatar }}</td>
             </tr>
             <tr>
                 <th>Username</th>
@@ -20,17 +25,10 @@
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
-            <tr>
-                <th>Avatar</th>
-                <td>{{ user.avatar }}</td>
-            </tr>
+
             <tr>
                 <th>CreatedAt</th>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
