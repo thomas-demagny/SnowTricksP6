@@ -3,7 +3,7 @@
 {% block title %}Reinitialisation de mot de passe{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('reset_password_error') %}
+    {% for flashError in app.flashes('reset_password_error'|trans) %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
     <h1>Reset your password</h1>
