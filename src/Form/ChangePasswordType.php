@@ -29,7 +29,7 @@ class ChangePasswordType extends AbstractType
                 'constraints'=> [
                     new UserPassword(),
                 ],
-                'label' => 'mot de passe actuel',
+                'label' => 'Mot de passe actuel',
                 'attr' => [
                     'autocomplete' => 'off'
                 ],
@@ -44,10 +44,10 @@ class ChangePasswordType extends AbstractType
                     ]),
                 ],
                 'first_options' => [
-                    'label' => 'nouveau mot de passe',
+                    'label' => 'Nouveau mot de passe',
                 ],
                 'second_options'=>[
-                    'label' => 'confirmer nouveau mot de passe'
+                    'label' => 'Confirmer nouveau mot de passe'
                 ],
             ])
         ;

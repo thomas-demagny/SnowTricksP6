@@ -25,7 +25,7 @@ class ChangePasswordFormType extends AbstractType
                         ]),
                         new Length([
                             'min' => 6,
-                            'minMessage' => "Votre mot de passe doit être d'au moins {{ limit }} charactères",
+                            'minMessage' => "Votre mot de passe doit être d'au moins {{ limit }} caractères",
                             // max length allowed by Symfony for security reasons
                             'max' => 50,
                         ]),
