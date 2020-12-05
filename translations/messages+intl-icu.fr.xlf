@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
     <header>
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
       <trans-unit id="wtG.cxy" resname="info.change_password">
         <source>info.change_password</source>
-        <target>__info.change_password</target>
+        <target>changement de mot de passe</target>
       </trans-unit>
       <trans-unit id="HLtdhYw" resname="action.save">
         <source>action.save</source>
-        <target>__action.save</target>
+        <target>sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="fpyghwx" resname="verify_email_error">
+        <source>verify_email_error</source>
+        <target>erreur de vérification de l'email</target>
+      </trans-unit>
+      <trans-unit id="FIqbGzc" resname="reset_password_error">
+        <source>reset_password_error</source>
+        <target>erreur de réinitialisation de mot de passe</target>
       </trans-unit>
     </body>
   </file>
