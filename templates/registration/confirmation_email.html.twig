@@ -1,13 +1,13 @@
-<h1>Hey! Merci de valider votre adresse mail!</h1>
-
-<p>
-    Vous vous êtes inscrit sur le site SnowTricks et nous vous en remercions, afin de valider votre inscription merci de cliquer sur le lien: <br><br>
-    <a href="{{ signedUrl|raw }}">
-        Confirmer mon adresse mail
-    </a>.
-    Attention ce lien expirera dans {{ expiresAt|date('g') }} hour(s).
-</p>
-
-<p>
-    Profitez bien !
-</p>
+<div class="limiter">
+    <h1>Hey! Merci de valider votre adresse mail!</h1>
+        <p>
+            Vous vous êtes inscrit sur le site SnowTricks et nous vous en remercions, afin de valider votre inscription merci de cliquer sur le lien: <br><br>
+            <a href="{{ signedUrl|raw }}">
+                Confirmer mon adresse mail
+            </a>.
+            Attention ce lien expirera dans {{ expiresAt|date('g') }} heure(s).
+        </p>
+        <p>
+            Profitez bien !
+        </p>
+</div>
