@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -59,6 +61,20 @@ class User implements UserInterface
      */
     private bool $isVerified = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user", orphanRemoval=true)
+     */
+    private ArrayCollection $trick;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->setCreatedAt(new DateTime());
+        $this->trick = new ArrayCollection();
+
+    }
     /**
      * @return int|null
      */
@@ -186,14 +202,6 @@ class User implements UserInterface
     }
 
     /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->setCreatedAt(new DateTime());
-    }
-
-    /**
      * @return DateTime
      */
     public function getCreatedAt(): DateTime
@@ -230,4 +238,36 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Trick[]
+     */
+    public function getTrick(): Collection
+    {
+        return $this->trick;
+    }
+
+    public function addTrick(Trick $trick): self
+    {
+        if (!$this->trick->contains($trick)) {
+            $this->trick[] = $trick;
+            $trick->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrick(Trick $trick): self
+    {
+        if ($this->trick->removeElement($trick)) {
+            // set the owning side to null (unless already changed)
+            if ($trick->getUser() === $this) {
+                $trick->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
