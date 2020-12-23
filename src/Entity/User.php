@@ -239,14 +239,19 @@ class User implements UserInterface
         return $this;
     }
 
+
     /**
-     * @return Collection|Trick[]
+     * @return Collection
      */
     public function getTrick(): Collection
     {
         return $this->trick;
     }
 
+    /**
+     * @param Trick $trick
+     * @return $this
+     */
     public function addTrick(Trick $trick): self
     {
         if (!$this->trick->contains($trick)) {
@@ -257,6 +262,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param Trick $trick
+     * @return $this
+     */
     public function removeTrick(Trick $trick): self
     {
         if ($this->trick->removeElement($trick)) {
