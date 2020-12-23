@@ -64,7 +64,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user", orphanRemoval=true)
      */
-    private ArrayCollection $trick;
+    private Collection $trick;
 
     /**
      * User constructor.
