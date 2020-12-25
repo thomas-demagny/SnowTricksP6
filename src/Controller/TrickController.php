@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/trick")
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrickController extends AbstractController
 {
     /**
-     * @Route("/trick", name="trick_index", methods={"GET"})
+     * @Route("/", name="trick", methods={"GET"})
      * @param TrickRepository $trickRepository
      * @return Response
      */
@@ -32,9 +33,9 @@ class TrickController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request ): Response
     {
-        $trick = new Trick();
+        $trick = new Trick($this->getUser());
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
@@ -43,7 +44,7 @@ class TrickController extends AbstractController
             $entityManager->persist($trick);
             $entityManager->flush();
 
-            return $this->redirectToRoute('trick_index');
+            return $this->redirectToRoute('trick');
         }
 
         return $this->render('trick/new.html.twig', [
@@ -53,7 +54,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="trick_show", methods={"GET"})
+     * @Route("trick/{id}", name="trick_show", methods={"GET"})
      * @param Trick $trick
      * @return Response
      */
@@ -65,7 +66,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="trick_edit", methods={"GET","POST"})
+     * @Route("trick/{id}/edit", name="trick_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Trick $trick
      * @return Response
@@ -78,7 +79,7 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('trick_index');
+            return $this->redirectToRoute('trick');
         }
 
         return $this->render('trick/edit.html.twig', [
@@ -101,6 +102,6 @@ class TrickController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('trick_index');
+        return $this->redirectToRoute('trick');
     }
 }
