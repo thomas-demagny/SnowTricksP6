@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">SnowTricks</a>
+        <a class="navbar-brand" href="{{ path('home')}}">SnowTricks</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,12 +9,7 @@
             <ul class="navbar ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ path('home') }}">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('trick') }}">
-                        Tricks
+                        Accueil
                     </a>
                 </li>
                 <li class="nav-item">
@@ -30,13 +25,13 @@
                 </li>
                 {% else %}
                     <a class="nav-link" href="{{ path('app_login') }}">
-                        Sign in
+                        Connexion
                     </a>
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_register') }}">
-                        Sign up
-                    </a>
-                </li>
+                        <a class="nav-link" href="{{ path('app_register') }}">
+                            Enregistrement
+                        </a>
+                    </li>
                 {% endif %}
             </ul>
         </div>

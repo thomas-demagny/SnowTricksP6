@@ -12,12 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @Route("/trick")
+ * @Route("/")
  */
 class TrickController extends AbstractController
 {
     /**
-     * @Route("/", name="trick", methods={"GET"})
+     * @Route("/", name="home", methods={"GET"})
      * @param TrickRepository $trickRepository
      * @return Response
      */
@@ -102,6 +102,6 @@ class TrickController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('trick');
+        return $this->redirectToRoute('home');
     }
 }
