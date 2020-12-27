@@ -7,11 +7,14 @@
             {{ encore_entry_link_tags("app") }}
         {% endblock %}
     </head>
-    {% include "layout/nav.html.twig"%}
-    {% block header %} {% endblock %}
+
     <body>
+    {% include "layout/nav.html.twig"%}
+
 <main class="content container">
-    {% block body %} {% endblock %}
+    {% block body %}
+        {% block header %} {% endblock %}
+    {% endblock %}
 </main>
     
     <footer class="footer">
