@@ -1,6 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -18,11 +19,10 @@ body {
   flex-shrink: 0;
   padding: 20px;
   text-align: center;
-  background-color: #8959A8;
+  background-color: #8959a8;
 }
 
 ul {
   list-style: none;
-  color: #8959A8;
+  color: #8959a8;
 }
-
