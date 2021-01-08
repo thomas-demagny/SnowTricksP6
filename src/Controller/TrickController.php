@@ -44,7 +44,7 @@ class TrickController extends AbstractController
             $entityManager->persist($trick);
             $entityManager->flush();
 
-            return $this->redirectToRoute('trick');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('trick/new.html.twig', [
@@ -79,7 +79,7 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('trick');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('trick/edit.html.twig', [
