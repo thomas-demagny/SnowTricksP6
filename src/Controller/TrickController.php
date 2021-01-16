@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Trick;
 use App\Form\TrickType;
 use App\Repository\TrickRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,6 +78,7 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $trick->setUpdateAt(new DateTime());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('home');
