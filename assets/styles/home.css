@@ -1,21 +1,19 @@
-.jumbotron-fluid {
-  height: auto;
-  background-image: url("/img/header.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+ #intro{
+   height: 100%;
+   background: url("/img/header.jpg")no-repeat center fixed;
+ }
 
-.snow,
-.lead {
-  color: #5b0f7e;
-  font-weight: bold;
-}
+ .snow,
+ .lead {
+   color: #5b0f7e;
+   font-weight: bold;
+ }
 
-.snow {
-  font-size: 5rem;
-}
+ .snow {
+   font-size: 5rem;
+ }
 
-.lead {
-  font-size: 4rem;
-}
+ .lead {
+   font-size: 4rem;
+ }
+
