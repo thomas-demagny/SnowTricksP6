@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %} </title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags("app") }}
-        {% endblock %}
-    </head>
-
-    <body>
-    {% include "layout/nav.html.twig"%}
-
-<main class="content container">
-    {% block body %}
-        {% block header %} {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}SnowTricks{% endblock %} </title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags("app") }}
     {% endblock %}
-</main>
-    
-    <footer class="footer">
-        {% include "layout/footer.html.twig"%}
-    </footer>
-    {% block javascripts %}
-        {{ encore_entry_script_tags("app") }}
-    {% endblock %}
-    </body>
+</head>
+
+<body>
+
+{% include "layout/nav.html.twig"%}
+{% block body %}{% endblock %}
+
+<footer class="container-fluid page-footer pt-4">
+{% include "layout/footer.html.twig"%}
+</footer>
+
+{% block javascripts %}
+    {{ encore_entry_script_tags("app") }}
+{% endblock %}
+</body>
 </html>

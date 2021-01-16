@@ -9,7 +9,7 @@
             <ul class="navbar ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ path('home') }}">
-                        Accueil
+                        <i class="fas fa-2x fa-home"></i>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -19,8 +19,8 @@
                         Bonjour {{ app.user.username }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Mon Profil</a>
-                        <a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a>
+                        <a class="dropdown-item" href="{{ path('user_show', {'id': app.user.id}) }}"><i class="fas fa-user"></i> Profil</a>
+                        <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
                 {% else %}
