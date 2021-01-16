@@ -52,10 +52,10 @@
                                 Modifier
                             </a>
                             {{ include('trick/_delete_form.html.twig') }}
+                            {% else %}
+                                <p>Pour modifier ou supprimer merci de vous connecter</p>
+                            {% endif %}
                         </div>
-                        {% else %}
-                            <p>Pour modifier ou supprimer merci de vous connecter</p>
-                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
