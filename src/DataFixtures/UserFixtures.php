@@ -51,7 +51,7 @@ class UserFixtures extends Fixture
             $user->setUsername($username)
                 ->setEmail($username.'@'.$username.'.fr')
                 ->setPassword($password)
-                ->setAvatar('https://imgur.com/gallery/FqQgvbZ')
+                ->setAvatar("img/avatar.png")
                 ->setIsVerified(true)
                 ->setCreatedAt($faker->dateTimebetween('-7 days'))
 
