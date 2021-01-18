@@ -13,11 +13,13 @@
         <table class="table">
             <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ trick.id }}</td>
+                <th><small>Ecrit par</small></th>
+
+                <td>{{ trick.user.username }}</td>
+
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ trick.title }}</td>
             </tr>
             <tr>
