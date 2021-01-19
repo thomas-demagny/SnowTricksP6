@@ -49,6 +49,11 @@ class Trick
     private ?User $user;
 
     /**
+     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="tricks")
+     */
+    private $categories;
+
+    /**
      * Trick constructor.
      * @param UserInterface $user
      */
@@ -57,6 +62,7 @@ class Trick
         $this->setCreatedAt(new DateTime());
         $this->setUpdateAt(new DateTime());
         $this->setUser($user);
+        $this->categories = new ArrayCollection();
 
     }
 
@@ -159,6 +165,33 @@ class Trick
     public function setUser(?UserInterface $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addTrick($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeTrick($this);
+        }
 
         return $this;
     }
