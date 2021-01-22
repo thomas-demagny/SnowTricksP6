@@ -4,13 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Form\TrickType;
+use App\Repository\CategoryRepository;
 use App\Repository\TrickRepository;
+
 use DateTime;
+
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @Route("/")
@@ -19,13 +24,20 @@ class TrickController extends AbstractController
 {
     /**
      * @Route("/", name="home", methods={"GET"})
+     * @Route("/trick/category/{id}", name="trick_category", methods={"GET"})
      * @param TrickRepository $trickRepository
+     * @param CategoryRepository $categoryRepository
+     * @param int|null $id
      * @return Response
      */
-    public function index(TrickRepository $trickRepository): Response
+    public function index(TrickRepository $trickRepository, CategoryRepository $categoryRepository, int $id = null): Response
     {
+
+        $trick = $id ? $trickRepository->findTrickByCategory($id): $trickRepository->findAll();
+
         return $this->render('trick/index.html.twig', [
-            'tricks' => $trickRepository->findAll(),
+            'tricks' => $trick,
+            'categories'=> $categoryRepository->findAll()
         ]);
     }
 
@@ -56,13 +68,16 @@ class TrickController extends AbstractController
 
     /**
      * @Route("trick/{id}", name="trick_show", methods={"GET"})
+     * @Entity("trick", expr="repository.findTrickWithCategories(id)")
      * @param Trick $trick
      * @return Response
      */
     public function show(Trick $trick): Response
     {
+
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
+
         ]);
     }
 
@@ -107,3 +122,5 @@ class TrickController extends AbstractController
         return $this->redirectToRoute('home');
     }
 }
+
+
