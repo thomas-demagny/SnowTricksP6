@@ -51,7 +51,7 @@ class Trick
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="tricks")
      */
-    private $categories;
+    private Collection $categories;
 
     /**
      * Trick constructor.
