@@ -17,7 +17,14 @@
         <table class="table">
             <tbody>
             <tr>
-                <th>Title</th>
+              <th>
+              <small>Ecrit par</small>
+              </th>
+              <td>{{ trick.user.username }}</td>
+              </tr>
+            <tr>
+                <th>Titre</th>
+
                 <td>{{ trick.title }}</td>
             </tr>
             <tr>
@@ -55,4 +62,6 @@
             </a>
         </div>
     </main>
-{% endblock %}
+{% endblock %}       
+
+           
