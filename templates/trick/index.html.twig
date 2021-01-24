@@ -29,11 +29,20 @@
         </div>
     </header>
     <main class="container-fluid mx-auto mt-3">
+
         <nav class="mb-5 mt-5 d-flex justify-content-center">
-            <a href="#" class="btn btn-info mr-2">Flip</a>
-            <a href="#" class="btn btn-dark mr-2">Front</a>
-            <a href="#" class="btn btn-info mr-2">Back</a>
-            <a href="#" class="btn btn-dark">Rotation</a>
+            <a href="{{ path('home') }}"
+               class="btn btn-info mr-2">
+                Toutes
+            </a>
+
+            {% for category in categories %}
+                <a href="{{ path('trick_category', {id: category.id }) }}"
+                   class="btn btn-{{(loop.index is even) ? 'info' : 'dark' }} mr-2">
+                    {{ category.name }}
+                </a>
+            {% endfor %}
+
         </nav>
         <!--  Section Tricks -->
         <section id="list">
@@ -46,14 +55,14 @@
                         </a>
                         <div class="card-footer d-flex justify-content-md-around bg-info">
                             {% if is_granted("ROLE_USER") %}
-                            <a href="{{ path('trick_edit', {'id': trick.id}) }}"
-                               class="btn btn-sm mr-2">
-                                <i class="fas fa-pencil-alt"></i>
-                                Modifier
-                            </a>
-                            {{ include('trick/_delete_form.html.twig') }}
+                                <a href="{{ path('trick_edit', {'id': trick.id}) }}"
+                                   class="btn btn-sm mr-2">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    Modifier
+                                </a>
+                                {{ include('trick/_delete_form.html.twig') }}
                             {% else %}
-                                <p>Pour modifier ou supprimer merci de vous connecter</p>
+                                <p>Pour modifier/supprimer merci de vous connecter</p>
                             {% endif %}
                         </div>
                     </div>

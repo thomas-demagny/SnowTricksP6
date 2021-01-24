@@ -9,37 +9,48 @@
             <div class="justify-content-end">
                 {{ include('trick/_delete_form.html.twig') }}</div>
         </div>
+        <b>Catégorie(s)</b>
+        {%  for category in trick.categories %}
+            {{ category.name}}
+        {% endfor %}
 
         <table class="table">
             <tbody>
             <tr>
-                <th><small>Ecrit par</small></th>
-
-                <td>{{ trick.user.username }}</td>
-
-            </tr>
+              <th>
+              <small>Ecrit par</small>
+              </th>
+              <td>{{ trick.user.username }}</td>
+              </tr>
             <tr>
                 <th>Titre</th>
+
                 <td>{{ trick.title }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ trick.description |raw }}</td>
+                <td>
+                    {{ trick.description |raw }}
+                </td>
             </tr>
+
             {% if trick.createdAt|format_datetime('medium') is same as (trick.updateAt|format_datetime('medium')) %}
                 <tr>
                     <th>Crée le</th>
-                    <td>{{ trick.createdAt|format_datetime('medium') }}</td>
+                    <td>
+                        {{ trick.createdAt|format_datetime('medium') }}
+                    </td>
                 </tr>
             {% else %}
                 <tr>
                     <th>Modifié le</th>
-                    <td>{{ trick.updateAt ? trick.updateAt|format_datetime('medium') : '' }}  </td>
+                    <td>
+                        {{ trick.updateAt ? trick.updateAt|format_datetime('medium') : '' }}
+                    </td>
                 </tr>
             {% endif %}
             </tbody>
         </table>
-
 
         {% if app.user %}
             <a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-info"><i class="fas fa-pencil-alt"></i> Editer</a>
@@ -51,7 +62,6 @@
             </a>
         </div>
     </main>
-{% endblock %}
+{% endblock %}       
 
-
-
+           
