@@ -6,16 +6,12 @@ use App\Entity\Trick;
 use App\Form\TrickType;
 use App\Repository\CategoryRepository;
 use App\Repository\TrickRepository;
-
 use DateTime;
-
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 /**
  * @Route("/")
@@ -122,5 +118,3 @@ class TrickController extends AbstractController
         return $this->redirectToRoute('home');
     }
 }
-
-
