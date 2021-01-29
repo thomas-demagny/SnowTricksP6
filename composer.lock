@@ -4,9 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "ca23a99061b817d7232717ac26c7b722",
-
+    "content-hash": "63603f85cf078779b6f55ed0c0f23a07",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -4070,16 +4068,16 @@
         },
         {
             "name": "symfony/mailer",
-            "version": "v5.2.1",
+            "version": "v5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "3f34fa977efca75ad17f1416ecb4605f27dbb75e"
+                "reference": "eeeabec5511d14aebba1808da959a3e31375e1f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/3f34fa977efca75ad17f1416ecb4605f27dbb75e",
-                "reference": "3f34fa977efca75ad17f1416ecb4605f27dbb75e",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/eeeabec5511d14aebba1808da959a3e31375e1f4",
+                "reference": "eeeabec5511d14aebba1808da959a3e31375e1f4",
                 "shasum": ""
             },
             "require": {
@@ -4128,7 +4126,7 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Mailer Component",
+            "description": "Helps sending emails",
             "homepage": "https://symfony.com",
             "funding": [
                 {
@@ -4144,7 +4142,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-18T08:03:05+00:00"
+            "time": "2021-01-27T10:15:41+00:00"
         },
         {
             "name": "symfony/mime",
