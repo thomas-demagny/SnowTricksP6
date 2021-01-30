@@ -62,9 +62,9 @@ class User implements UserInterface
     private bool $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="user")
      */
-    private Collection $trick;
+    private Collection $tricks;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=true)
@@ -77,7 +77,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
-        $this->trick = new ArrayCollection();
+        $this->tricks = new ArrayCollection();
         $this->comments = new ArrayCollection();
 
     }
@@ -249,9 +249,9 @@ class User implements UserInterface
     /**
      * @return Collection
      */
-    public function getTrick(): Collection
+    public function getTricks(): Collection
     {
-        return $this->trick;
+        return $this->tricks;
     }
 
     /**
@@ -260,8 +260,8 @@ class User implements UserInterface
      */
     public function addTrick(Trick $trick): self
     {
-        if (!$this->trick->contains($trick)) {
-            $this->trick[] = $trick;
+        if (!$this->tricks->contains($trick)) {
+            $this->tricks[] = $trick;
             $trick->setUser($this);
         }
 
@@ -274,7 +274,7 @@ class User implements UserInterface
      */
     public function removeTrick(Trick $trick): self
     {
-        if ($this->trick->removeElement($trick)) {
+        if ($this->tricks->removeElement($trick)) {
             // set the owning side to null (unless already changed)
             if ($trick->getUser() === $this) {
                 $trick->setUser(null);
