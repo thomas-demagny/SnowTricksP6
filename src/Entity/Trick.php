@@ -43,7 +43,7 @@ class Trick
     private ?DateTimeInterface $updateAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="trick")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
      */
     private ?User $user;
@@ -57,6 +57,7 @@ class Trick
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick", orphanRemoval=true)
      */
     private Collection $comments;
+
 
     /**
      * Trick constructor.
@@ -183,6 +184,10 @@ class Trick
         return $this->categories;
     }
 
+    /**
+     * @param Category $category
+     * @return $this
+     */
     public function addCategory(Category $category): self
     {
         if (!$this->categories->contains($category)) {
@@ -193,6 +198,10 @@ class Trick
         return $this;
     }
 
+    /**
+     * @param Category $category
+     * @return $this
+     */
     public function removeCategory(Category $category): self
     {
         if ($this->categories->removeElement($category)) {
@@ -210,6 +219,10 @@ class Trick
         return $this->comments;
     }
 
+    /**
+     * @param Comment $comment
+     * @return $this
+     */
     public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
@@ -220,6 +233,10 @@ class Trick
         return $this;
     }
 
+    /**
+     * @param Comment $comment
+     * @return $this
+     */
     public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
