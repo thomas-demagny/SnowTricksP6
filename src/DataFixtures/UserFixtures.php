@@ -9,12 +9,16 @@ use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
+/**
+ * Class UserFixtures
+ * @package App\DataFixtures
+ */
 class UserFixtures extends Fixture
 {
     /**
      *
      */
-    CONST DATA = 6;
+    CONST DATA = 20;
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -40,28 +44,28 @@ class UserFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
+
         $faker = Factory::create('fr_FR');
         for ($i = 1; $i <= self::DATA; ++$i) {
             $user = new User();
             $username = $faker->userName;
-
-
             $password = $this->passwordEncoder->encodePassword($user, $username);
 
-            $user->setUsername($username)
+            $user
+                ->setUsername($username)
                 ->setEmail($username.'@'.$username.'.fr')
                 ->setPassword($password)
-                ->setAvatar("img/avatar.png")
+                ->setAvatar("public/img/avatar.png")
                 ->setIsVerified(true)
                 ->setCreatedAt($faker->dateTimebetween('-7 days'))
-
-
             ;
+
             $this->addReference('user'.$i,$user);
+
             $manager->persist($user);
         }
 
         $manager->flush();
     }
-
 }
+
