@@ -2,34 +2,49 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
+
 /**
- * Class Category
+ * Class CategoryFixtures
  * @package App\DataFixtures
  */
-class Category extends Fixture
+class CategoryFixtures extends Fixture
 {
-    /**
-     * @var array|string[]
-     */
-    private array $categories = ['Front', 'Flip', 'Back', 'Rotations', 'Grabs'];
+
+
+    CONST categories = [
+        'Front',
+        'Flip',
+        'Back',
+        'Rotations',
+        'Grabs'
+    ];
 
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < count($this->categories); $i++) {
-            $category = new \App\Entity\Category();
+        for ($i = 0; $i < count(CategoryFixtures::categories); $i++) {
+            $category = new Category();
 
-            $category->setName($this->categories[$i]);
+            $category->setName(self::categories[$i]);
             $this->addReference('category' . $i, $category);
 
             $manager->persist($category);
         }
 
         $manager->flush();
+    }
+
+    public function loadCategories()
+    {
+        for ($l = 0; $l < count(CategoryFixtures::categories); $l++) {
+            $categoriesArray[] = 'category'.$l ;
+        }
+        return $categoriesArray;
     }
 }
