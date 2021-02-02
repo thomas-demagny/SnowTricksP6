@@ -22,7 +22,7 @@ class CommentRepository extends ServiceEntityRepository
     public function findCommentsWithUser($id)
     {
         return $this->createQueryBuilder('c')
-            ->addSelect('u')
+            ->addSelect('cu')
             ->leftJoin('c.user', 'cu')
             ->Where('c.trick= :id')
             ->setParameter('id', $id)
@@ -31,6 +31,7 @@ class CommentRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
     // /**
     //  * @return CommentFixtures[] Returns an array of CommentFixtures objects
     //  */
@@ -57,6 +58,6 @@ class CommentRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }
-    */
+    }*/
+
 }
