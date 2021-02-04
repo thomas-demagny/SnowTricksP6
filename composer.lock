@@ -4,9 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "3599fdd038d0053f25619516fa16d09a",
-
+    "content-hash": "7b296abc96603572d51fc9b6190fca6b",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -6109,7 +6107,7 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
