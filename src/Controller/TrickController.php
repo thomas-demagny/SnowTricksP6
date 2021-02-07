@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Trick;
+use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -63,17 +66,39 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("trick/{id}", name="trick_show", methods={"GET"})
+     * @Route("trick/{id}", name="trick_show")
      * @Entity("trick", expr="repository.findTrickWithCategories(id)")
+     * @param $id
      * @param Trick $trick
+     * @param CommentRepository $commentRepository
+     * @param Request $request
      * @return Response
      */
-    public function show(Trick $trick): Response
+    public function show($id,Trick $trick, CommentRepository $commentRepository, Request $request): Response
     {
+        $comments = $commentRepository->findCommentsWithUser($trick);
+        if($this->getUser())
+        {
+            $comment = new Comment($this->getUser(), $trick);
+            $form = $this->createForm(CommentType::class, $comment);
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $entityComment = $this->getDoctrine()->getManager();
+                $entityComment->persist($comment);
+                $entityComment->flush();
+
+                return $this->redirect($this->generateUrl('trick_show',
+                        ['id' => $id,]).'#comments');
+            }
+
+        }
 
         return $this->render('trick/show.html.twig', [
             'trick' => $trick,
-
+            'form'=> $form->createView(),
+            'comments'=>$comments
         ]);
     }
 
