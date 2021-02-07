@@ -44,7 +44,6 @@ class UserFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-
         $faker = Factory::create('fr_FR');
         for ($i = 1; $i <= self::DATA; ++$i) {
             $user = new User();
@@ -60,12 +59,12 @@ class UserFixtures extends Fixture
                 ->setCreatedAt($faker->dateTimebetween('-7 days'))
             ;
 
-            $this->addReference('user'.$i,$user);
-
             $manager->persist($user);
+
+            $fixtureName = 'user'.$i;
+            $this->addReference($fixtureName, $user);
         }
 
         $manager->flush();
     }
 }
-

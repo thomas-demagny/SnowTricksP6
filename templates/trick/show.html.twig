@@ -61,7 +61,60 @@
                 Retour
             </a>
         </div>
+
+        <div class="container">
+            <div class="be-comment-block">
+                <h3 class="comments-title"><i class="far fa-comments"></i> Commentaires ({{ trick.comments | length }})</h3>
+                {%  if app.user %}
+
+                <div class="row mt-5 justify-content-center mx-3 mx-md-0">
+                    <div class="col-12 col-md-8 ">
+                        {{ form_start(form) }}
+                        {{ form_row(form.content, {label: false}) }}
+                    </div>
+                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start">
+                        <button type="submit" class="btn btn-blue mb-2">Commenter</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+                {% else %}
+                    <div class="text-center mt-5">
+                        <a href="{{ path('app_login') }}" class="btn btn-secondary">Connectez-vous pour commenter</a>
+                    </div>
+
+                {% endif %}
+                <div class="be-comment">
+                    <div class="be-img-comment">
+
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment" style="height: 30px">
+
+                    </div>
+                    {% for comment in comments %}
+                    <div class="be-comment-content">
+
+				<span class="be-comment-name">
+					{{ comment.user.username }}
+					</span>
+                        <span class="be-comment-time">
+					<i class="far fa-clock"></i>
+					{{ comment.createdAt | date('d/m/y') }} à {{ comment.createdAt | date('H:i') }}
+				</span>
+
+                        <p class="be-comment-text">
+                            {{ comment.content }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+            </div>
+        </div>
     </main>
-{% endblock %}       
+{% endblock %}
+
+
 
            
