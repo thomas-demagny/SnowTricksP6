@@ -1,28 +1,31 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-html, body {
+html,
+body,
+header {
   height: 100%;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  flex: 1 0 auto;
-  padding: 20px;
-}
-
-.footer {
-  flex-shrink: 0;
-  padding: 20px;
-  text-align: center;
-  background-color: #8959A8;
-}
-
-ul {
+li {
   list-style: none;
-  color: #8959A8;
 }
 
+a {
+  color: #8959a8;
+}
+
+a:hover {
+  color: #2e3136;
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+footer {
+  width: 100%;
+  background-color: #218BC3;
+  position: relative;
+  bottom: 0;
+  padding-top: 10px;
+}
