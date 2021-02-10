@@ -42,6 +42,11 @@ class User implements UserInterface
     private string $password;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private ?string $newPassword;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private ?string $email;
@@ -70,6 +75,8 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=true)
      */
     private Collection $comments;
+
+
 
     /**
      * User constructor.
@@ -310,6 +317,18 @@ class User implements UserInterface
                 $comment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNewPassword(): ?string
+    {
+        return $this->newPassword;
+    }
+
+    public function setNewPassword(string $newPassword): self
+    {
+        $this->newPassword = $newPassword;
 
         return $this;
     }
