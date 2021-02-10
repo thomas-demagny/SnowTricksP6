@@ -22,7 +22,6 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
      */
     CONST TRICKS_DATA =
         [
-
             [
                 'title' => 'Backside air',
                 'description' => "Le grab star du snowboard qui peut être fait d'autant de façon différentes qu'il y a de styles de riders.
@@ -93,7 +92,6 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
                 4.Posez votre planche à plat."
 
             ],
-
             [
                 'title' => 'BackFlip',
                 'description' => "Le backflip est l'un des plus beaux tours qui existent. C'est souvent le seul moyen d'impressionner les spectateurs sur la piste.
@@ -101,14 +99,14 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
                 Commencez la pirouette avec votre bras avant. Faites le saut avec votre jambe arrière. Assurez-vous que vos bras et vos épaules restent parallèles à la planche.
                 En l'air, regardez par-dessus votre bras avant.
                 Atterrissez sur une planche plate, en vous appuyant sur la pointe de vos pieds."
-             ],
+            ],
             [
                 'title' => 'FS 540',
                 'description' => "La prochaine étape logique après le frontside 360 est le frontside 540. Nous sommes en train de faire un grand pas en avant !
                 1.Accélérez en diagonale. Assurez-vous que vous exécutez le pop off proprement.
                 Lorsque vous lancez, faites une légère rotation avec vos épaules. Maintenant, levez les genoux et tournez les épaules dans le sens de la rotation.
                 La position est identique à celle du fs 180."
-             ]
+            ]
         ];
 
     /**
@@ -116,15 +114,19 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ($k = 0 ; $k < self::TRICKS_DATA; $k++) {
-            $usersData = $this->getReference('user'. mt_rand(1, UserFixtures::DATA));
+        foreach (self::TRICKS_DATA as $n => $trickData) {
+            $user = $this->getReference('user'. mt_rand(1, UserFixtures::DATA));
 
-            $trick = $this->initTrick(new Trick($usersData), self::TRICKS_DATA[$k]);
+            $trick = new Trick($user);
+
+            $trick
+                ->setTitle($trickData['title'])
+                ->setDescription($trickData['description'])
+            ;
 
             $manager->persist($trick);
-            $fixtureName = 'trick'.$k;
 
-            $this->addReference($fixtureName, $trick);
+            $this->addReference('trick' . $n, $trick);
         }
 
         $manager->flush();
@@ -162,5 +164,4 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
             UserFixtures::class
         ];
     }
-
 }

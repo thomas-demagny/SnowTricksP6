@@ -13,26 +13,15 @@ use Doctrine\Persistence\ObjectManager;
  */
 class CategoryFixtures extends Fixture
 {
-
-
-    CONST categories = [
-        'Front',
-        'Flip',
-        'Back',
-        'Rotations',
-        'Grabs'
-    ];
-
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < count(CategoryFixtures::categories); $i++) {
-            $category = new Category();
-
-            $category->setName(self::categories[$i]);
-            $this->addReference('category' . $i, $category);
+        foreach ($this->getCategoryDataSet() as $n => $categoryData) {
+            $category = new Category;
+            $category->setName($categoryData);
+            $this->addReference('category' . $n, $category);
 
             $manager->persist($category);
         }
@@ -40,11 +29,14 @@ class CategoryFixtures extends Fixture
         $manager->flush();
     }
 
-    public function loadCategories()
+    private function getCategoryDataSet(): array
     {
-        for ($l = 0; $l < count(CategoryFixtures::categories); $l++) {
-            $categoriesArray[] = 'category'.$l ;
-        }
-        return $categoriesArray;
+        return [
+            'Front',
+            'Flip',
+            'Back',
+            'Rotations',
+            'Grabs'
+        ];
     }
 }

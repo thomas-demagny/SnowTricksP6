@@ -18,7 +18,7 @@ class UserFixtures extends Fixture
     /**
      *
      */
-    CONST DATA = 20;
+    CONST DATA = 16;
     /**
      * @var UserPasswordEncoderInterface
      */

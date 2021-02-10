@@ -44,33 +44,19 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('fr_FR');
+        foreach (CommentFixtures::COMMENTS as $commentData) {
+            $trick = $this->getReference('trick' . mt_rand(0, max(array_keys(TrickFixtures::TRICKS_DATA))));
+            $user = $this->getReference('user' . mt_rand(1, UserFixtures::DATA));
 
-        $usersData = [];
-        for ($i = 1; $i <= UserFixtures::DATA; ++$i) {
-            $usersData[] = 'user' . $i;
+            $comment = new Comment($user, $trick);
+
+            $comment
+                ->setContent($commentData)
+                ->setCreatedAt(max($user->getCreatedAt(), $trick->getCreatedAt()));
+
+            $manager->persist($comment);
         }
 
-        for ($j = 0; $j < TrickFixtures::TRICKS_NUMBER; ++$j) {
-            for ($i = 1; $i < rand(1, 20); ++$i) {
-                /** @var User $user */
-                $user = $this->getReference($usersData[array_rand($usersData)]);
-
-                /** @var Trick $trick */
-                $trick = $this->getReference('trick' . $j);
-
-                $date = max($user->getCreatedAt(), $trick->getCreatedAt());
-
-                $comment = new Comment($user, $trick);
-
-                $comment
-                    ->setContent(self::COMMENTS[array_rand(self::COMMENTS)])
-                    ->setCreatedAt($faker->dateTimeBetween('-' . (new DateTime())->diff($date)->days . 'days'));
-
-                $manager->persist($comment);
-
-            }
-        }
         $manager->flush();
     }
 
