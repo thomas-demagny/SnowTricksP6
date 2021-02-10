@@ -33,6 +33,9 @@
             <button class="btn-sm btn-primary mt-3" type="submit">
                 Connexion
             </button>
+            <a href="{{ path('app_reset_password', {'token': 'x'}) }}" class="btn-sm btn-primary mt-3 ml-5" type="submit">
+                Mot de passe oublié
+            </a>
         </div>
     </form>
 {% endblock %}
