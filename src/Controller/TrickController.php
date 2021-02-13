@@ -77,22 +77,22 @@ class TrickController extends AbstractController
     public function show($id,Trick $trick, CommentRepository $commentRepository, Request $request): Response
     {
         $comments = $commentRepository->findCommentsWithUser($trick);
-        if($this->getUser())
+
+
+        $comment = new Comment($this->getUser(), $trick);
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
         {
-            $comment = new Comment($this->getUser(), $trick);
-            $form = $this->createForm(CommentType::class, $comment);
-            $form->handleRequest($request);
+            if($this->getUser()){
+            $entityComment = $this->getDoctrine()->getManager();
+            $entityComment->persist($comment);
+            $entityComment->flush();
 
-            if($form->isSubmitted() && $form->isValid())
-            {
-                $entityComment = $this->getDoctrine()->getManager();
-                $entityComment->persist($comment);
-                $entityComment->flush();
-
-                return $this->redirect($this->generateUrl('trick_show',
-                        ['id' => $id,]).'#comments');
-            }
-
+            return $this->redirect($this->generateUrl('trick_show',
+                    ['id' => $id,]).'#comments');
+        }
         }
 
         return $this->render('trick/show.html.twig', [
