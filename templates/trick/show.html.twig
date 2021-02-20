@@ -6,8 +6,11 @@
     <main class="limiter container">
         <div class="d-flex justify-content-lg-between">
             <h1 class="justify-content-start mr-4">Trick</h1>
+            {% if app.user %}
             <div class="justify-content-end">
-                {{ include('trick/_delete_form.html.twig') }}</div>
+                {{ include('trick/_delete_form.html.twig') }}
+            </div>
+            {% endfor %}
         </div>
         <b>Catégorie(s)</b>
         {%  for category in trick.categories %}
