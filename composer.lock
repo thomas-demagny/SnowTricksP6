@@ -7590,16 +7590,16 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v5.2.6",
+            "version": "v5.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "58e5be2aa69041ff35250537190d9ec29136782a"
+                "reference": "c2beee950c917dabdb2c339290bba827c862674c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/58e5be2aa69041ff35250537190d9ec29136782a",
-                "reference": "58e5be2aa69041ff35250537190d9ec29136782a",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/c2beee950c917dabdb2c339290bba827c862674c",
+                "reference": "c2beee950c917dabdb2c339290bba827c862674c",
                 "shasum": ""
             },
             "require": {
@@ -7661,7 +7661,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-16T09:10:13+00:00"
+            "time": "2021-04-13T07:28:22+00:00"
         },
         {
             "name": "webimpress/safe-writer",
